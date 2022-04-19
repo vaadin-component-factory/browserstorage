@@ -8,7 +8,7 @@ This add-on should be forward-compatible up to Vaadin 23.
 
 The API for SessionStorage and LocalStorage are identical, and have been mapped to the Storage object API as returning completable futures, with the addition of a "contains key" function to potentially save on bandwidth, as follows:
 
-```
+```java
 CompletableFuture<Boolean> containsKey(String key);
 CompletableFuture<String> getItem(String key);
 CompletableFuture<Boolean> setItem(String key, String value);
@@ -20,14 +20,14 @@ The returned boolean for `setItem`, `removeItem` and `clear` can safely be ignor
 
 To access `SessionStorage` or `LocalStorage`, create an instance of them:
 
-```
+```java
 LocalStorage localStorage = new LocalStorage();
 localStorage.setItem("foo", "bar");
 ```
 
 Because the objects need to bind to a specific UI. In complex codebases, you may want to use the explicit constructor:
 
-```
+```java
 UI myUI = UI.getCurrent();
 LocalStorage localStorage = new LocalStorage(myUI);
 localStorage.setItem("foo", "bar");
